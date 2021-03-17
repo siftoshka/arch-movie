@@ -1,2 +1,5 @@
-include ':app'
+include ':common'
+include ':mvi'
+include ':mvp'
+include ':mvvm'
 rootProject.name = "AMovie"
