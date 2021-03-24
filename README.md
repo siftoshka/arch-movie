@@ -8,4 +8,4 @@
  
 
 ## There are following libraries which I use:
-Jetpack AppCompat, Jetpack Core, Material Components, Constraint Layout, Swipe Refresh Layout, Lifecycle, Navigation, Fragment, Coil, Coroutines, FlowBinding, Koin, Room, Retrofit, OkHttp.
+Jetpack AppCompat, Jetpack Core, Material Components, Constraint Layout, Swipe Refresh Layout, Lifecycle, Navigation, Fragment, Coil, Coroutines, FlowBinding, Dagger Hilt, Room, Retrofit, OkHttp.
