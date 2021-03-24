@@ -1,4 +1,4 @@
-package cz.mamiyaza.common.utils
+package cz.mamiyaza.common.utils.server
 
 import cz.mamiyaza.common.model.ApiMovie
 import cz.mamiyaza.common.model.ApiMovieResponse
