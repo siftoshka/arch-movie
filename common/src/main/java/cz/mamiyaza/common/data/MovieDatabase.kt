@@ -1,4 +1,4 @@
-package cz.mamiyaza.common.utils.data
+package cz.mamiyaza.common.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

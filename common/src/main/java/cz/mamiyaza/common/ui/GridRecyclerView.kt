@@ -1,4 +1,4 @@
-package cz.mamiyaza.common.utils.ui
+package cz.mamiyaza.common.ui
 
 import android.content.Context
 import android.util.AttributeSet

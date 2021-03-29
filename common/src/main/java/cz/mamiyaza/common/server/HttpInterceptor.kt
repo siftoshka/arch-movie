@@ -1,7 +1,7 @@
-package cz.mamiyaza.common.utils.server
+package cz.mamiyaza.common.server
 
 import android.text.TextUtils
-import cz.mamiyaza.common.utils.server.Api.API_KEY
+import cz.mamiyaza.common.server.Api.API_KEY
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

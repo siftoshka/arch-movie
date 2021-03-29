@@ -1,4 +1,4 @@
-package cz.mamiyaza.common.utils.server
+package cz.mamiyaza.common.server
 
 /**
  * The key of the API
