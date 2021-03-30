@@ -5,7 +5,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="cz.mamiyaza.mvp.main.MainFragment"
+        android:name="cz.mamiyaza.amovie.main.MainFragment"
         android:label="Blank"
         tools:layout="@layout/include_main_screen" />
 </navigation>

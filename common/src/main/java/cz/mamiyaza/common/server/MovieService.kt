@@ -15,7 +15,7 @@ interface MovieService {
     @GET("trending/movie/day")
     suspend fun getTrendingMovies(
         @Query("page") page: Int,
-    ): Response<ApiMovieResponse>
+    ): ApiMovieResponse
 
     @GET("movie/{movie_id}")
     suspend fun getMovie(

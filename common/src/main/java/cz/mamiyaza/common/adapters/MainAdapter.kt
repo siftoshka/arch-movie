@@ -10,15 +10,15 @@ import cz.mamiyaza.common.databinding.IncludeMovieBinding
 import cz.mamiyaza.common.model.ApiMovieLite
 
 /**
- * TODO add class description
+ * Adapter for list of trending movies.
  */
-class MainAdapter(private val clickListener: StatItemClickListener) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter(private val clickListener: ItemClickListener) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     companion object {
-        var mClickListener: StatItemClickListener? = null
+        var mClickListener: ItemClickListener? = null
     }
 
-    interface StatItemClickListener {
+    interface ItemClickListener {
         fun onPostClicked(movie: ApiMovieLite)
     }
 
@@ -50,7 +50,7 @@ class MainAdapter(private val clickListener: StatItemClickListener) : RecyclerVi
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         with(holder) {
             with(diff.currentList[position]) {
-                binding.posterImage.load(backdropPath)
+                binding.posterImage.load("https://image.tmdb.org/t/p/original$movieImage")
                 binding.posterTitle.text = movieTitle
                 mClickListener = clickListener
                 itemView.apply {

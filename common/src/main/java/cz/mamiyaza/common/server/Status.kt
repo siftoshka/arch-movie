@@ -3,18 +3,9 @@ package cz.mamiyaza.common.server
 /**
  * Status of the response.
  */
-enum class Status {
-    SUCCESS,
-    ERROR,
-    LOADING
-}
+sealed class Result<out T : Any> {
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
-    companion object {
-        fun <T> success(data: T): Resource<T> = Resource(status = Status.SUCCESS, data = data, message = null)
+    class Success<out T : Any>(val data: T) : Result<T>()
 
-        fun <T> error(data: T?, message: String): Resource<T> = Resource(status = Status.ERROR, data = data, message = message)
-
-        fun <T> loading(data: T?): Resource<T> = Resource(status = Status.LOADING, data = data, message = null)
-    }
+    class Error(val exception: Throwable?) : Result<Nothing>()
 }
