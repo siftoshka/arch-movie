@@ -7,5 +7,15 @@
         android:id="@+id/mainFragment"
         android:name="cz.mamiyaza.amovie.main.MainFragment"
         android:label="Blank"
-        tools:layout="@layout/include_main_screen" />
+        tools:layout="@layout/include_main_screen" >
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="cz.mamiyaza.amovie.search.SearchFragment"
+        android:label="Blank"
+        tools:layout="@layout/include_search_screen" />
 </navigation>
