@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * TODO add class description
+ * Main ViewModel.
  */
 @HiltViewModel
 class MainViewModel @Inject constructor(
