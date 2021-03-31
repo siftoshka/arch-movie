@@ -21,8 +21,6 @@ class SearchViewModel @Inject constructor(
 
     private val state = MutableLiveState<List<ApiMovieLite>>()
 
-    val loading: LiveData<Boolean> = state.mapLoading()
-    val error: LiveData<Boolean> = state.mapError()
     val data: LiveData<List<ApiMovieLite>> = state.mapLoaded().mapNotNull { it }
 
     fun searchMovies(query: String) {

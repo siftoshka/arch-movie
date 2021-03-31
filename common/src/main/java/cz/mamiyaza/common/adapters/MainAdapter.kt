@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import cz.mamiyaza.common.databinding.IncludeMovieBinding
 import cz.mamiyaza.common.model.ApiMovieLite
+import cz.mamiyaza.common.utils.Constants.IMAGE_URL
 
 /**
  * Adapter for list of trending movies.
@@ -38,6 +39,8 @@ class MainAdapter(private val clickListener: ItemClickListener) : RecyclerView.A
 
     fun statisticList(list: List<ApiMovieLite>) = diff.submitList(list)
 
+    fun addMore(list: List<ApiMovieLite>) = diff.currentList.addAll(list)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val binding = IncludeMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MainViewHolder(binding)
@@ -48,24 +51,16 @@ class MainAdapter(private val clickListener: ItemClickListener) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+        val movie = diff.currentList[position]
         with(holder) {
             with(diff.currentList[position]) {
-                binding.posterImage.load("https://image.tmdb.org/t/p/original$movieImage")
+                binding.posterImage.load("$IMAGE_URL$movieImage")
                 binding.posterTitle.text = movieTitle
                 mClickListener = clickListener
-                itemView.apply {
-                    mClickListener?.onPostClicked(movie = this@with)
+                holder.itemView.setOnClickListener {
+                    mClickListener?.onPostClicked(movie = movie)
                 }
             }
         }
-        val movie = diff.currentList[position]
-        holder.itemView.apply {
-            mClickListener = clickListener
-            holder.itemView.setOnLongClickListener {
-                mClickListener?.onPostClicked(movie)
-                true
-            }
-        }
     }
-
 }

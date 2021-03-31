@@ -26,5 +26,5 @@ interface MovieService {
     @GET("movie/{movie_id}")
     suspend fun getMovie(
         @Path("movie_id") movieId: Int,
-    ): Response<ApiMovie>
+    ): ApiMovie
 }
