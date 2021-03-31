@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cz.mamiyaza.common.data.Movie
 import cz.mamiyaza.common.model.ApiMovie
 import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.repository.MainRepository
@@ -26,10 +27,12 @@ class MovieViewModel @Inject constructor(
     var movieId: Int = -1
 
     private val state = MutableLiveState<ApiMovie>()
+    private val saveState = MutableLiveState<Boolean>()
 
     val loading: LiveData<Boolean> = state.mapLoading()
     val error: LiveData<Boolean> = state.mapError()
     val data: LiveData<ApiMovie> = state.mapLoaded().mapNotNull { it }
+    val isSaved: LiveData<Boolean> = saveState.mapLoaded()
 
     fun requestItemDetails() {
         if (movieId == -1) return
@@ -41,6 +44,14 @@ class MovieViewModel @Inject constructor(
             when(val result = wrapResult { serverRepository.getMovie(movieId) }) {
                 is Result.success -> state.loaded(result.value)
                 is Result.failure -> state.error(result.error)
+            }
+        }
+    }
+
+    fun saveMovie(id: Int, name: String) {
+        viewModelScope.launch {
+            when(val result = wrapResult { mainRepository.addMovie(Movie(id, name))}) {
+                is Result.success -> saveState.loaded(true)
             }
         }
     }

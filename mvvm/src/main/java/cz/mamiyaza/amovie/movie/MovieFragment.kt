@@ -36,6 +36,7 @@ class MovieFragment : Fragment() {
         genresAdapter = GenresAdapter()
         binding.movieGenres.adapter = genresAdapter
         binding.movieGenres.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -67,6 +68,12 @@ class MovieFragment : Fragment() {
             }
         }
 
+        viewModel.isSaved.observe(viewLifecycleOwner) { isSaved ->
+            if (isSaved) {
+                binding.saveButton.setImageResource(R.drawable.ic_star_filled)
+            }
+        }
+
         viewModel.data.observe(viewLifecycleOwner) { movie ->
             binding.posterBackground.load("$IMAGE_URL${movie.backdropPath}")
             binding.posterMoviePost.load("$IMAGE_URL${movie.posterPath}")
@@ -79,6 +86,10 @@ class MovieFragment : Fragment() {
             binding.posterRevenue.text = ": $ ${CurrencyFormatter.format(movie.revenue)}"
             genresAdapter.statisticList(movie.movieGenres)
             binding.posterDesc.text = movie.overview
+
+            binding.saveButton.setOnClickListener {
+                viewModel.saveMovie(movie.id, movie.title)
+            }
         }
     }
 
