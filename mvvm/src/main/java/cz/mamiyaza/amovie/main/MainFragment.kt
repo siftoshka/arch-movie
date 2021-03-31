@@ -3,15 +3,17 @@ package cz.mamiyaza.amovie.main
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cz.mamiyaza.amovie.R
 import cz.mamiyaza.common.adapters.MainAdapter
 import cz.mamiyaza.common.databinding.IncludeMainScreenBinding
 import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.utils.Constants.MOVIE_ID
+import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * Main Fragment of the MVVM Project.
@@ -26,7 +28,11 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = IncludeMainScreenBinding.inflate(inflater, container, false)
         mainAdapter = MainAdapter(this)
         binding.recyclerView.adapter = mainAdapter
@@ -54,8 +60,24 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
         }
 
         viewModel.data.observe(viewLifecycleOwner) { data ->
-            mainAdapter.statisticList(data)
+            mainAdapter.addAllMedia(data)
         }
+
+        viewModel.moreData.observe(viewLifecycleOwner) { data ->
+            mainAdapter.showMoreMedia(data)
+        }
+
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            var page = 2
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                try {
+                    if (!binding.recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        viewModel.addMoreMovies(page)
+                        page++
+                    }
+                } catch (ignored: Exception) { }
+            }
+        })
     }
 
     override fun onPostClicked(movie: ApiMovieLite) {

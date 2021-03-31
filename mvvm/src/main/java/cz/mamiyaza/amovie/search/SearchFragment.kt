@@ -56,7 +56,7 @@ class SearchFragment : Fragment(), MainAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.data.observe(viewLifecycleOwner) { data ->
-            mainAdapter.statisticList(data)
+            mainAdapter.addAllMedia(data)
         }
     }
 
