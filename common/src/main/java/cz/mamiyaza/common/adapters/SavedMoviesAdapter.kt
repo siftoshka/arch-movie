@@ -25,6 +25,7 @@ class SavedMoviesAdapter(private val clickListener: ItemClickListener) : Recycle
 
     interface ItemClickListener {
         fun onPostClicked(movie: Movie)
+        fun onPostLongClicked(movie: Movie)
     }
 
     inner class MainViewHolder(val binding: IncludeSavedMoviesBinding) : RecyclerView.ViewHolder(binding.root)
@@ -60,6 +61,10 @@ class SavedMoviesAdapter(private val clickListener: ItemClickListener) : Recycle
                 mClickListener = clickListener
                 holder.itemView.setOnClickListener {
                     mClickListener?.onPostClicked(movie = movie)
+                }
+                holder.itemView.setOnLongClickListener {
+                    mClickListener?.onPostLongClicked(movie = movie)
+                    true
                 }
             }
         }

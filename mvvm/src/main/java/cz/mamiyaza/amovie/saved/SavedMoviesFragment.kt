@@ -52,6 +52,10 @@ class SavedMoviesFragment : Fragment(), SavedMoviesAdapter.ItemClickListener {
         findNavController().navigate(R.id.action_savedFragment_to_movieFragment, args)
     }
 
+    override fun onPostLongClicked(movie: Movie) {
+        openDialog(movie)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.main_delete -> {
@@ -60,6 +64,15 @@ class SavedMoviesFragment : Fragment(), SavedMoviesAdapter.ItemClickListener {
             }
             else -> { super.onOptionsItemSelected(item) }
         }
+    }
+
+    private fun openDialog(movie: Movie) {
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.AppCompatAlertDialogStyle)
+        builder.setTitle("Delete Movie")
+        builder.setMessage("Are you sure to delete saved movie?")
+        builder.setPositiveButton(android.R.string.yes) { _, _ -> viewModel.deleteMovie(movie) }
+        builder.setNegativeButton(android.R.string.no) { dialog, _ -> dialog.dismiss() }
+        builder.show()
     }
 
     private fun openDialog() {
