@@ -7,17 +7,44 @@
     android:clickable="true"
     android:focusable="true">
 
+    <!--Loading Screen-->
+    <include
+        android:id="@+id/loading_screen"
+        layout="@layout/include_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!--Error Screen-->
+    <include
+        android:id="@+id/error_screen"
+        layout="@layout/include_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="1dp"
+        android:clipToPadding="true"
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Light">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="120dp"
             android:background="@color/mainBackground"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/mainBackground"
@@ -32,20 +59,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="@string/screen_saved" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+                app:title="@string/screen_saved"
+                app:navigationIcon="@drawable/ic_back"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <cz.mamiyaza.common.ui.GridRecyclerView
-        android:id="@+id/recycler_view_watched"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:clipToPadding="true"
-        android:overScrollMode="never" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

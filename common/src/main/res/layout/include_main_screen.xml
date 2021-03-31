@@ -45,7 +45,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:background="@color/mainBackground"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/mainBackground"

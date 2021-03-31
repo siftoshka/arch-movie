@@ -13,7 +13,7 @@ import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.utils.Constants.IMAGE_URL
 
 /**
- * Adapter for list of trending movies.
+ * Adapter for genres of movies.
  */
 class GenresAdapter : RecyclerView.Adapter<GenresAdapter.MainViewHolder>() {
 

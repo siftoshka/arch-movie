@@ -69,7 +69,8 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
                 true
             }
             R.id.main_saved -> {
-                print("SAVED")
+                val action = MainFragmentDirections.actionMainFragmentToSavedFragment()
+                findNavController().navigate(action)
                 true
             }
             else -> { super.onOptionsItemSelected(item) }

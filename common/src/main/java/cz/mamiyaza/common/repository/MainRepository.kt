@@ -10,4 +10,8 @@ import javax.inject.Inject
 class MainRepository @Inject constructor(private val movieDAO: MovieDAO) {
 
     suspend fun addMovie(movie: Movie) = movieDAO.addMovie(movie)
+
+    fun getMovies() = movieDAO.getMovies()
+
+    suspend fun deleteAllMovies() = movieDAO.deleteAllMovies()
 }
