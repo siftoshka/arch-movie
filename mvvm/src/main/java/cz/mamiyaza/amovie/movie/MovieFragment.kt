@@ -41,6 +41,10 @@ class MovieFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        binding.errorScreen.refreshButton.setOnClickListener {
+            viewModel.getMovie()
+        }
+
         return binding.root
     }
 
@@ -67,8 +71,8 @@ class MovieFragment : Fragment() {
                 binding.mainScreen.visibility = View.GONE
             }
         }
-        binding.saveButton.tag = Integer.valueOf(R.drawable.ic_star)
 
+        binding.saveButton.tag = Integer.valueOf(R.drawable.ic_star)
         viewModel.savedMovies.observe(viewLifecycleOwner) { movies ->
             if (movies.find { it.id == viewModel.movieId } != null) {
                 binding.saveButton.setImageResource(R.drawable.ic_star_filled)
