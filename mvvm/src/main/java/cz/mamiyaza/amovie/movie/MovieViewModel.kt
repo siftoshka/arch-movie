@@ -1,17 +1,12 @@
 package cz.mamiyaza.amovie.movie
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import cz.mamiyaza.common.data.Movie
 import cz.mamiyaza.common.model.ApiMovie
-import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.repository.MainRepository
 import cz.mamiyaza.common.repository.ServerRepository
 import cz.mamiyaza.common.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,10 +24,11 @@ class MovieViewModel @Inject constructor(
     private val state = MutableLiveState<ApiMovie>()
     private val saveState = MutableLiveState<Boolean>()
 
+    val savedMovies = mainRepository.getMovies().asLiveData(viewModelScope.coroutineContext)
+
     val loading: LiveData<Boolean> = state.mapLoading()
     val error: LiveData<Boolean> = state.mapError()
     val data: LiveData<ApiMovie> = state.mapLoaded().mapNotNull { it }
-    val isSaved: LiveData<Boolean> = saveState.mapLoaded()
 
     fun requestItemDetails() {
         if (movieId == -1) return
@@ -48,11 +44,15 @@ class MovieViewModel @Inject constructor(
         }
     }
 
-    fun saveMovie(id: Int, name: String) {
+    fun saveMovie(name: String) {
         viewModelScope.launch {
-            when(val result = wrapResult { mainRepository.addMovie(Movie(id, name))}) {
-                is Result.success -> saveState.loaded(true)
-            }
+            mainRepository.addMovie(Movie(movieId, name))
+        }
+    }
+
+    fun deleteMovie(name: String) {
+        viewModelScope.launch {
+            mainRepository.deleteMovie(Movie(movieId, name))
         }
     }
 }

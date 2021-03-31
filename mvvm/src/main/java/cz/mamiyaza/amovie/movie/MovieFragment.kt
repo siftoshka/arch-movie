@@ -67,10 +67,15 @@ class MovieFragment : Fragment() {
                 binding.mainScreen.visibility = View.GONE
             }
         }
+        binding.saveButton.tag = Integer.valueOf(R.drawable.ic_star)
 
-        viewModel.isSaved.observe(viewLifecycleOwner) { isSaved ->
-            if (isSaved) {
+        viewModel.savedMovies.observe(viewLifecycleOwner) { movies ->
+            if (movies.find { it.id == viewModel.movieId } != null) {
                 binding.saveButton.setImageResource(R.drawable.ic_star_filled)
+                binding.saveButton.tag = Integer.valueOf(R.drawable.ic_star_filled)
+            } else {
+                binding.saveButton.setImageResource(R.drawable.ic_star)
+                binding.saveButton.tag = Integer.valueOf(R.drawable.ic_star)
             }
         }
 
@@ -88,7 +93,8 @@ class MovieFragment : Fragment() {
             binding.posterDesc.text = movie.overview
 
             binding.saveButton.setOnClickListener {
-                viewModel.saveMovie(movie.id, movie.title)
+                if (binding.saveButton.tag as Int == R.drawable.ic_star) viewModel.saveMovie(movie.title)
+                else viewModel.deleteMovie(movie.title)
             }
         }
     }
