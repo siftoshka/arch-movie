@@ -7,17 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import cz.mamiyaza.common.adapters.MainAdapter
 import cz.mamiyaza.common.adapters.SavedMoviesAdapter
 import cz.mamiyaza.common.data.Movie
-import cz.mamiyaza.common.databinding.IncludeMainScreenBinding
-import cz.mamiyaza.common.databinding.IncludeSavedMoviesBinding
 import cz.mamiyaza.common.databinding.IncludeSavedScreenBinding
-import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.utils.Constants
 import cz.mamiyaza.mvp.R
 import dagger.hilt.android.AndroidEntryPoint

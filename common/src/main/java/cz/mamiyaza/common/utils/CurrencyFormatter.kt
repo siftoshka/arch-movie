@@ -10,5 +10,4 @@ object CurrencyFormatter {
         val decimalFormat = DecimalFormat("###,###,##0")
         return decimalFormat.format(number.toString().toDouble())
     }
-
 }

@@ -24,13 +24,13 @@ class MoviePresenter @Inject constructor(
 
     fun loadMovie(id: Int) {
         loadingMovies()
-        checkSafeness()
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
                 val movie = serverRepository.getMovie(id)
                 movieId = id
                 if (movie.title.isEmpty()) showError()
                 else showMovies(movie)
+                checkSafeness()
             }
         }
     }
@@ -42,9 +42,9 @@ class MoviePresenter @Inject constructor(
                 val movie = serverRepository.getMovie(movieId)
                 if (movie.title.isEmpty()) showError()
                 else showMovies(movie)
+                checkSafeness()
             }
         }
-        checkSafeness()
     }
 
     fun saveMovie(name: String) {

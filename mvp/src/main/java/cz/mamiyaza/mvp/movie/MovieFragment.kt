@@ -29,10 +29,6 @@ class MovieFragment : Fragment(), MoviePresenter.MovieView {
     @Inject lateinit var presenter: MoviePresenter
     private lateinit var genresAdapter: GenresAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = IncludeMovieScreenBinding.inflate(inflater, container, false)
         presenter.attachView(this)
@@ -47,7 +43,6 @@ class MovieFragment : Fragment(), MoviePresenter.MovieView {
         binding.errorScreen.refreshButton.setOnClickListener {
             presenter.loadMovie()
         }
-
         return binding.root
     }
 

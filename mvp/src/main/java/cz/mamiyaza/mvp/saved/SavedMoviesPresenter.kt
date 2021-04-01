@@ -1,9 +1,7 @@
 package cz.mamiyaza.mvp.saved
 
 import cz.mamiyaza.common.data.Movie
-import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.repository.MainRepository
-import cz.mamiyaza.common.repository.ServerRepository
 import kotlinx.coroutines.*
 import javax.inject.Inject
 

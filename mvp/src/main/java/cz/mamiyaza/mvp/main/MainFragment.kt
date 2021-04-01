@@ -29,10 +29,6 @@ class MainFragment : Fragment(), MainPresenter.MainView, MainAdapter.ItemClickLi
     @Inject lateinit var presenter: MainPresenter
     private lateinit var mainAdapter: MainAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = IncludeMainScreenBinding.inflate(inflater, container, false)
         presenter.attachView(this)

@@ -16,7 +16,6 @@ import cz.mamiyaza.mvp.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
 /**
  * Search Fragment of MVVM Project.
  */
@@ -27,10 +26,6 @@ class SearchFragment : Fragment(), SearchPresenter.SearchView, MainAdapter.ItemC
     private val binding get() = _binding!!
     @Inject lateinit var presenter: SearchPresenter
     private lateinit var mainAdapter: MainAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = IncludeSearchScreenBinding.inflate(inflater, container, false)
