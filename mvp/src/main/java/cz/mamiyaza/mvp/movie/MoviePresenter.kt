@@ -15,7 +15,7 @@ class MoviePresenter @Inject constructor(
     private val serverRepository: ServerRepository,
 ){
 
-    private val movieId: Int = 0
+    private var movieId: Int = 0
     var view: MovieView? = null
 
     fun attachView(view: MovieView) {
@@ -28,6 +28,7 @@ class MoviePresenter @Inject constructor(
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
                 val movie = serverRepository.getMovie(id)
+                movieId = id
                 if (movie.title.isEmpty()) showError()
                 else showMovies(movie)
             }
@@ -36,7 +37,6 @@ class MoviePresenter @Inject constructor(
 
     fun loadMovie() {
         loadingMovies()
-        checkSafeness()
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
                 val movie = serverRepository.getMovie(movieId)
@@ -44,6 +44,7 @@ class MoviePresenter @Inject constructor(
                 else showMovies(movie)
             }
         }
+        checkSafeness()
     }
 
     fun saveMovie(name: String) {
@@ -67,8 +68,7 @@ class MoviePresenter @Inject constructor(
     private fun checkSafeness() {
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
-                val movies = mainRepository.getAllMovies()
-                view?.checkMovie(movies.find { it.id == movieId } != null)
+                view?.checkMovie(mainRepository.getAllMovies().find { it.id == movieId } != null)
             }
         }
     }

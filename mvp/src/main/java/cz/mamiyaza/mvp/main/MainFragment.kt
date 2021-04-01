@@ -74,8 +74,8 @@ class MainFragment : Fragment(), MainPresenter.MainView, MainAdapter.ItemClickLi
                 true
             }
             R.id.main_saved -> {
-                //val action = MainFragmentDirections.actionMainFragmentToSavedFragment()
-                //findNavController().navigate(action)
+                val action = MainFragmentDirections.actionMainFragmentToSavedFragment()
+                findNavController().navigate(action)
                 true
             }
             else -> { super.onOptionsItemSelected(item) }

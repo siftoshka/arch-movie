@@ -35,7 +35,6 @@
         android:label="Blank"
         tools:layout="@layout/include_movie_screen" />
 
-
     <fragment
         android:id="@+id/savedFragment"
         android:name="cz.mamiyaza.amovie.saved.SavedMoviesFragment"

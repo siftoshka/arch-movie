@@ -14,9 +14,9 @@
         <action
             android:id="@+id/action_mainFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
-<!--        <action-->
-<!--            android:id="@+id/action_mainFragment_to_savedFragment"-->
-<!--            app:destination="@id/savedFragment" />-->
+        <action
+            android:id="@+id/action_mainFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
     </fragment>
 
     <fragment
@@ -35,14 +35,13 @@
         android:label="Blank"
         tools:layout="@layout/include_movie_screen" />
 
-
-<!--    <fragment-->
-<!--        android:id="@+id/savedFragment"-->
-<!--        android:name="cz.mamiyaza.mvp.saved.SavedMoviesFragment"-->
-<!--        android:label="Blank"-->
-<!--        tools:layout="@layout/include_saved_screen" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_savedFragment_to_movieFragment"-->
-<!--            app:destination="@id/movieFragment" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="cz.mamiyaza.mvp.saved.SavedMoviesFragment"
+        android:label="Blank"
+        tools:layout="@layout/include_saved_screen" >
+        <action
+            android:id="@+id/action_savedFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
 </navigation>
