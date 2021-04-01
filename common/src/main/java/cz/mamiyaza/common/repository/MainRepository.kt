@@ -13,6 +13,8 @@ class MainRepository @Inject constructor(private val movieDAO: MovieDAO) {
 
     fun getMovies() = movieDAO.getMovies()
 
+    suspend fun getAllMovies() = movieDAO.getAllMovies()
+
     suspend fun deleteMovie(movie: Movie) = movieDAO.deleteMovie(movie)
 
     suspend fun deleteAllMovies() = movieDAO.deleteAllMovies()

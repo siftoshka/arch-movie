@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cz.mamiyaza.common.adapters.MainAdapter
 import cz.mamiyaza.common.databinding.IncludeMainScreenBinding
 import cz.mamiyaza.common.model.ApiMovieLite
+import cz.mamiyaza.common.utils.Constants
 import cz.mamiyaza.mvp.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -59,7 +60,10 @@ class MainFragment : Fragment(), MainPresenter.MainView, MainAdapter.ItemClickLi
     }
 
     override fun onPostClicked(movie: ApiMovieLite) {
-
+        val args = Bundle().apply {
+            putInt(Constants.MOVIE_ID, movie.movieId)
+        }
+        findNavController().navigate(R.id.action_mainFragment_to_movieFragment, args)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -22,7 +22,6 @@ class MovieViewModel @Inject constructor(
     var movieId: Int = -1
 
     private val state = MutableLiveState<ApiMovie>()
-    private val saveState = MutableLiveState<Boolean>()
 
     val savedMovies = mainRepository.getMovies().asLiveData(viewModelScope.coroutineContext)
 
