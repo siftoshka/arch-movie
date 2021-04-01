@@ -2,21 +2,25 @@ package cz.mamiyaza.mvp.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cz.mamiyaza.common.adapters.MainAdapter
 import cz.mamiyaza.common.databinding.IncludeMainScreenBinding
 import cz.mamiyaza.common.model.ApiMovieLite
+import cz.mamiyaza.mvp.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
- * TODO add class description
+ * Main Fragment of the MVP Project.
  */
 @AndroidEntryPoint
-class MainFragment : Fragment(), MainPresenter.MainView {
+class MainFragment : Fragment(), MainPresenter.MainView, MainAdapter.ItemClickListener {
 
     private var _binding: IncludeMainScreenBinding? = null
 
@@ -26,18 +30,52 @@ class MainFragment : Fragment(), MainPresenter.MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.attachView(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = IncludeMainScreenBinding.inflate(inflater, container, false)
-        mainAdapter = MainAdapter(object : MainAdapter.ItemClickListener {
-            override fun onPostClicked(movie: ApiMovieLite) { }
-        })
+        presenter.attachView(this)
+        mainAdapter = MainAdapter(this)
+        binding.toolbar.inflateMenu(R.menu.menu_main)
+        binding.toolbar.setOnMenuItemClickListener { onOptionsItemSelected(it) }
 
         binding.recyclerView.adapter = mainAdapter
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            var page = 2
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                try {
+                    if (!binding.recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        presenter.addMoreMovies(page)
+                        page++
+                    }
+                } catch (ignored: Exception) { }
+            }
+        })
+    }
+
+    override fun onPostClicked(movie: ApiMovieLite) {
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.main_search -> {
+                //val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
+                //findNavController().navigate(action)
+                true
+            }
+            R.id.main_saved -> {
+                //val action = MainFragmentDirections.actionMainFragmentToSavedFragment()
+                //findNavController().navigate(action)
+                true
+            }
+            else -> { super.onOptionsItemSelected(item) }
+        }
     }
 
     override fun onDestroyView() {
@@ -51,10 +89,11 @@ class MainFragment : Fragment(), MainPresenter.MainView {
     }
 
     override fun showMovieList(movies: List<ApiMovieLite>) {
-        mainAdapter.statisticList(movies)
+        mainAdapter.addAllMedia(movies)
     }
 
-    override fun clearMovies() {
+    override fun showMoreMovieList(movies: List<ApiMovieLite>) {
+        mainAdapter.showMoreMedia(movies)
     }
 
     override fun showLoading() {

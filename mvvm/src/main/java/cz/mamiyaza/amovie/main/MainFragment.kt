@@ -28,11 +28,7 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = IncludeMainScreenBinding.inflate(inflater, container, false)
         mainAdapter = MainAdapter(this)
         binding.recyclerView.adapter = mainAdapter

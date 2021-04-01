@@ -1,11 +1,16 @@
 package cz.mamiyaza.mvp.main
 
 import cz.mamiyaza.common.model.ApiMovieLite
+import cz.mamiyaza.common.repository.ServerRepository
+import kotlinx.coroutines.*
+import javax.inject.Inject
 
 /**
- * TODO add class description
+ * Main Presenter.
  */
-class MainPresenter {
+class MainPresenter @Inject constructor(
+    private val serverRepository: ServerRepository,
+){
 
     var view: MainView? = null
 
@@ -16,14 +21,26 @@ class MainPresenter {
     }
 
     private fun loadMovies() {
-        loadingMovies();
+        loadingMovies()
 
-//        getMoviesUseCase.execute(
-//            onResult = { result ->
-//                result.fold({showError()}, {movies -> showMovies(movies)})
-//            })
+        CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.Main) {
+                val movies = serverRepository.getMovies(1)
+                if (movies.results.isEmpty()) showError()
+                else showMovies(movies.results)
+            }
+        }
     }
 
+    fun addMoreMovies(page: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.Main) {
+                val movies = serverRepository.getMovies(page)
+                if (movies.results.isEmpty()) showError()
+                else showMoreMovies(movies.results)
+            }
+        }
+    }
 
     fun detachView() {
         this.view = null
@@ -31,12 +48,15 @@ class MainPresenter {
 
     private fun loadingMovies() {
         view?.showLoading()
-        view?.clearMovies()
     }
 
     private fun showMovies(movies: List<ApiMovieLite>) {
         view?.hideLoading()
         view?.showMovieList(movies)
+    }
+
+    private fun showMoreMovies(movies: List<ApiMovieLite>) {
+        view?.showMoreMovieList(movies)
     }
 
     private fun showError() {
@@ -46,7 +66,7 @@ class MainPresenter {
 
     interface MainView {
         fun showMovieList(movies: List<ApiMovieLite>)
-        fun clearMovies()
+        fun showMoreMovieList(movies: List<ApiMovieLite>)
         fun showLoading()
         fun hideLoading()
         fun showConnectionError()
