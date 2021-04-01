@@ -2,21 +2,15 @@ package cz.mamiyaza.mvp.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import cz.mamiyaza.common.adapters.GenresAdapter
-import cz.mamiyaza.common.adapters.MainAdapter
-import cz.mamiyaza.common.databinding.IncludeMainScreenBinding
 import cz.mamiyaza.common.databinding.IncludeMovieScreenBinding
 import cz.mamiyaza.common.model.ApiMovie
-import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.utils.Constants
 import cz.mamiyaza.common.utils.CurrencyFormatter
 import cz.mamiyaza.mvp.R

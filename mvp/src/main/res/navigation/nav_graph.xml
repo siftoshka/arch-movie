@@ -8,9 +8,9 @@
         android:name="cz.mamiyaza.mvp.main.MainFragment"
         android:label="Blank"
         tools:layout="@layout/include_main_screen" >
-<!--        <action-->
-<!--            android:id="@+id/action_mainFragment_to_searchFragment"-->
-<!--            app:destination="@id/searchFragment" />-->
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
         <action
             android:id="@+id/action_mainFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
@@ -19,15 +19,15 @@
 <!--            app:destination="@id/savedFragment" />-->
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/searchFragment"-->
-<!--        android:name="cz.mamiyaza.mvp.search.SearchFragment"-->
-<!--        android:label="Blank"-->
-<!--        tools:layout="@layout/include_search_screen" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_searchFragment_to_movieFragment"-->
-<!--            app:destination="@id/movieFragment" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="cz.mamiyaza.mvp.search.SearchFragment"
+        android:label="Blank"
+        tools:layout="@layout/include_search_screen" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/movieFragment"

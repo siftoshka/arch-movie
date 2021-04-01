@@ -5,12 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import cz.mamiyaza.common.databinding.IncludeGenresBinding
-import cz.mamiyaza.common.databinding.IncludeMovieBinding
 import cz.mamiyaza.common.model.ApiMovieGenre
-import cz.mamiyaza.common.model.ApiMovieLite
-import cz.mamiyaza.common.utils.Constants.IMAGE_URL
 
 /**
  * Adapter for genres of movies.

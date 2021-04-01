@@ -1,7 +1,5 @@
 package cz.mamiyaza.mvp.movie
 
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import cz.mamiyaza.common.data.Movie
 import cz.mamiyaza.common.model.ApiMovie
 import cz.mamiyaza.common.repository.MainRepository
