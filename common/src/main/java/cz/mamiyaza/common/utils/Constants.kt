@@ -6,4 +6,5 @@ package cz.mamiyaza.common.utils
 object Constants {
     const val IMAGE_URL = "https://image.tmdb.org/t/p/original"
     const val MOVIE_ID = "MOVIE_ID"
+    const val API_KEY = "ec2dcf827532d34623a888799f6294d3"
 }
