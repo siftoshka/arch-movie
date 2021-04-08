@@ -1,5 +1,6 @@
 package cz.mamiyaza.common.repository
 
+import cz.mamiyaza.common.model.ApiMovie
 import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.server.MovieService
 import cz.mamiyaza.common.utils.DataState
@@ -22,6 +23,24 @@ class ServerRepository @Inject constructor(private val service: MovieService) {
         emit(DataState.Loading)
         try {
             emit(DataState.Success(service.getTrendingMovies(page).results))
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
+    }
+
+    suspend fun getMovieFlow(id: Int): Flow<DataState<ApiMovie>> = flow {
+        emit(DataState.Loading)
+        try {
+            emit(DataState.Success(service.getMovie(id)))
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
+    }
+
+    suspend fun makeSearch(query: String): Flow<DataState<List<ApiMovieLite>>> = flow {
+        emit(DataState.Loading)
+        try {
+            emit(DataState.Success(service.getMovieSearch(query, 1).results))
         } catch (e: Exception) {
             emit(DataState.Error(e))
         }

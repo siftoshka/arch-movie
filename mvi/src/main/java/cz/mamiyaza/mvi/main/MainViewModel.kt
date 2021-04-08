@@ -2,7 +2,6 @@ package cz.mamiyaza.mvi.main
 
 import androidx.lifecycle.*
 import cz.mamiyaza.common.model.ApiMovieLite
-import cz.mamiyaza.common.repository.MainRepository
 import cz.mamiyaza.common.repository.ServerRepository
 import cz.mamiyaza.common.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cz.mamiyaza.common.adapters.MainAdapter
@@ -82,7 +83,7 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
         val args = Bundle().apply {
             putInt(MOVIE_ID, movie.movieId)
         }
-        //findNavController().navigate(R.id.action_mainFragment_to_movieFragment, args)
+        findNavController().navigate(R.id.action_mainFragment_to_movieFragment, args)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -93,8 +94,8 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
                 true
             }
             R.id.main_saved -> {
-                //val action = MainFragmentDirections.actionMainFragmentToSavedFragment()
-                //findNavController().navigate(action)
+                val action = MainFragmentDirections.actionMainFragmentToSavedFragment()
+                findNavController().navigate(action)
                 true
             }
             else -> { super.onOptionsItemSelected(item) }

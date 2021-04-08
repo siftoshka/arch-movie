@@ -31,13 +31,13 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="cz.mamiyaza.amovie.movie.MovieFragment"
+        android:name="cz.mamiyaza.mvi.movie.MovieFragment"
         android:label="Blank"
         tools:layout="@layout/include_movie_screen" />
 
     <fragment
         android:id="@+id/savedFragment"
-        android:name="cz.mamiyaza.amovie.saved.SavedMoviesFragment"
+        android:name="cz.mamiyaza.mvi.saved.SavedMoviesFragment"
         android:label="Blank"
         tools:layout="@layout/include_saved_screen" >
         <action
