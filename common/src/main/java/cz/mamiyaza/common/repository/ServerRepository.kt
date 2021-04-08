@@ -37,7 +37,7 @@ class ServerRepository @Inject constructor(private val service: MovieService) {
         }
     }
 
-    suspend fun makeSearch(query: String): Flow<DataState<List<ApiMovieLite>>> = flow {
+    suspend fun makeSearchFlow(query: String): Flow<DataState<List<ApiMovieLite>>> = flow {
         emit(DataState.Loading)
         try {
             emit(DataState.Success(service.getMovieSearch(query, 1).results))

@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="cz.mamiyaza.amovie.search.SearchFragment"
+        android:name="cz.mamiyaza.mvi.search.SearchFragment"
         android:label="Blank"
         tools:layout="@layout/include_search_screen" >
         <action

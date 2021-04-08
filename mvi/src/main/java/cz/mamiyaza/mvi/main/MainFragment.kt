@@ -89,8 +89,8 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.main_search -> {
-                //val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
-                //findNavController().navigate(action)
+                val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
+                findNavController().navigate(action)
                 true
             }
             R.id.main_saved -> {
