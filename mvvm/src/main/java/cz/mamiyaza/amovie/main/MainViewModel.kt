@@ -17,22 +17,21 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
     private val serverRepository: ServerRepository) : ViewModel() {
 
     private val state = MutableLiveState<List<ApiMovieLite>>()
-    private val newState = MutableLiveState<List<ApiMovieLite>>()
+    private val dataState = MutableLiveState<List<ApiMovieLite>>()
 
     val loading: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
         addSource(state.mapLoading()) { value = it }
-        addSource(newState.mapLoading()) { value = it }
+        addSource(dataState.mapLoading()) { value = it }
     }
     val error: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
         addSource(state.mapError()) { value = it }
-        addSource(newState.mapError()) { value = it }
+        addSource(dataState.mapError()) { value = it }
     }
     val data: LiveData<List<ApiMovieLite>> = state.mapLoaded().mapNotNull { it }
-    val moreData: LiveData<List<ApiMovieLite>> = newState.mapLoaded().mapNotNull { it }
+    val moreData: LiveData<List<ApiMovieLite>> = dataState.mapLoaded().mapNotNull { it }
 
     fun getMovies() {
         state.loading()
@@ -47,8 +46,8 @@ class MainViewModel @Inject constructor(
     fun addMoreMovies(page: Int) {
         viewModelScope.launch {
             when(val result = wrapResult { serverRepository.getMovies(page) }) {
-                is Result.success -> newState.loaded(result.value.results)
-                is Result.failure -> newState.error(result.error)
+                is Result.success -> dataState.loaded(result.value.results)
+                is Result.failure -> dataState.error(result.error)
             }
         }
     }

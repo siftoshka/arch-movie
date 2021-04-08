@@ -35,10 +35,6 @@ fun <T> MutableLiveData<State<T>>.loaded(data: T) {
     value = State.Loaded(data)
 }
 
-fun MutableLiveData<State<Unit>>.loaded() {
-    value = State.Loaded(Unit)
-}
-
 fun <T> MutableLiveData<State<T>>.error(err: Error) {
     value = State.Error(err)
 }
