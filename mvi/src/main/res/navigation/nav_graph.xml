@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="cz.mamiyaza.mvi.main.MainFragment"
+        android:label="Blank"
+        tools:layout="@layout/include_main_screen" >
+<!--        <action-->
+<!--            android:id="@+id/action_mainFragment_to_searchFragment"-->
+<!--            app:destination="@id/searchFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_mainFragment_to_movieFragment"-->
+<!--            app:destination="@id/movieFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_mainFragment_to_savedFragment"-->
+<!--            app:destination="@id/savedFragment" />-->
+    </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/searchFragment"-->
+<!--        android:name="cz.mamiyaza.amovie.search.SearchFragment"-->
+<!--        android:label="Blank"-->
+<!--        tools:layout="@layout/include_search_screen" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_searchFragment_to_movieFragment"-->
+<!--            app:destination="@id/movieFragment" />-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/movieFragment"-->
+<!--        android:name="cz.mamiyaza.amovie.movie.MovieFragment"-->
+<!--        android:label="Blank"-->
+<!--        tools:layout="@layout/include_movie_screen" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/savedFragment"-->
+<!--        android:name="cz.mamiyaza.amovie.saved.SavedMoviesFragment"-->
+<!--        android:label="Blank"-->
+<!--        tools:layout="@layout/include_saved_screen" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_savedFragment_to_movieFragment"-->
+<!--            app:destination="@id/movieFragment" />-->
+<!--    </fragment>-->
+</navigation>
