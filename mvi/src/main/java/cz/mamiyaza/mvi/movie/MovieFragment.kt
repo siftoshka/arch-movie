@@ -106,5 +106,4 @@ class MovieFragment : Fragment() {
             else viewModel.deleteMovie(movie.title)
         }
     }
-
 }

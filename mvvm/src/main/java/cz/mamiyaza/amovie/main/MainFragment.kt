@@ -14,7 +14,6 @@ import cz.mamiyaza.common.model.ApiMovieLite
 import cz.mamiyaza.common.utils.Constants.MOVIE_ID
 import dagger.hilt.android.AndroidEntryPoint
 
-
 /**
  * Main Fragment of the MVVM Project.
  */

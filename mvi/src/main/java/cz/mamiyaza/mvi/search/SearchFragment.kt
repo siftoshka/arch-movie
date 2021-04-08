@@ -18,7 +18,7 @@ import cz.mamiyaza.mvi.R
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * Search Fragment of MVVM Project.
+ * Search Fragment of MVI Project.
  */
 @AndroidEntryPoint
 class SearchFragment : Fragment(), MainAdapter.ItemClickListener {

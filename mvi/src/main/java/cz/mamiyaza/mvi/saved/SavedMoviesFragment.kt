@@ -15,7 +15,7 @@ import cz.mamiyaza.common.utils.Constants.MOVIE_ID
 import cz.mamiyaza.mvi.R
 
 /**
- * Saved Movies Fragment of the MVVM Project.
+ * Saved Movies Fragment of the MVI Project.
  */
 @AndroidEntryPoint
 class SavedMoviesFragment : Fragment(), SavedMoviesAdapter.ItemClickListener {

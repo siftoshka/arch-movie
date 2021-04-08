@@ -15,7 +15,6 @@ import cz.mamiyaza.common.utils.DataState
 import cz.mamiyaza.mvi.R
 import dagger.hilt.android.AndroidEntryPoint
 
-
 /**
  * Main Fragment of the MVI Project.
  */
