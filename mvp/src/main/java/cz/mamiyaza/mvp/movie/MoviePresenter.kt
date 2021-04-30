@@ -39,10 +39,15 @@ class MoviePresenter @Inject constructor(
         loadingMovies()
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
-                val movie = serverRepository.getMovie(movieId)
-                if (movie.title.isEmpty()) showError()
-                else showMovies(movie)
-                checkSafeness()
+                try {
+                    val movie = serverRepository.getMovie(movieId)
+                    if (movie.title.isEmpty()) showError()
+                    else showMovies(movie)
+                    checkSafeness()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    showError()
+                }
             }
         }
     }

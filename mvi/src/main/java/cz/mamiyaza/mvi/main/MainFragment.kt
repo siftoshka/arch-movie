@@ -36,6 +36,11 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
         binding.toolbar.inflateMenu(R.menu.menu_main)
         binding.toolbar.setOnMenuItemClickListener { onOptionsItemSelected(it) }
         viewModel.setStateEvent(MainStateEvent.GetMoviesEvent)
+
+        binding.errorScreen.refreshButton.setOnClickListener {
+            viewModel.setStateEvent(MainStateEvent.GetMoviesEvent)
+        }
+
         setHasOptionsMenu(true)
         return binding.root
     }

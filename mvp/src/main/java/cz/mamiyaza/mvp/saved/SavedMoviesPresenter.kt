@@ -23,10 +23,14 @@ class SavedMoviesPresenter @Inject constructor(
 
     private fun loadMovies() {
         CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.Main) {
-                val movies = mainRepository.getAllMovies()
-                localMovies = movies
-                view?.showMovies(movies)
+            try {
+                withContext(Dispatchers.Main) {
+                    val movies = mainRepository.getAllMovies()
+                    localMovies = movies
+                    view?.showMovies(movies)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

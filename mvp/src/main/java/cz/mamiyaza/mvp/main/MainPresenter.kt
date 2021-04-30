@@ -20,14 +20,19 @@ class MainPresenter @Inject constructor(
         loadMovies()
     }
 
-    private fun loadMovies() {
+    fun loadMovies() {
         loadingMovies()
 
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
-                val movies = serverRepository.getMovies(1)
-                if (movies.results.isEmpty()) showError()
-                else showMovies(movies.results)
+                try {
+                    val movies = serverRepository.getMovies(1)
+                    if (movies.results.isEmpty()) showError()
+                    else showMovies(movies.results)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    showError()
+                }
             }
         }
     }
@@ -35,9 +40,14 @@ class MainPresenter @Inject constructor(
     fun addMoreMovies(page: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
-                val movies = serverRepository.getMovies(page)
-                if (movies.results.isEmpty()) showError()
-                else showMoreMovies(movies.results)
+                try {
+                    val movies = serverRepository.getMovies(page)
+                    if (movies.results.isEmpty()) showError()
+                    else showMoreMovies(movies.results)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    showError()
+                }
             }
         }
     }

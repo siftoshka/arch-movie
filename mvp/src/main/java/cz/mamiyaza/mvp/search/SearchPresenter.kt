@@ -22,9 +22,13 @@ class SearchPresenter @Inject constructor(
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main) {
                 delay(500)
-                if (query.isNotBlank()) {
-                    val movies = serverRepository.makeSearch(query, 1)
-                    showMovies(movies.results)
+                try {
+                    if (query.isNotBlank()) {
+                        val movies = serverRepository.makeSearch(query, 1)
+                        showMovies(movies.results)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
         }

@@ -38,6 +38,12 @@ class MainFragment : Fragment(), MainPresenter.MainView, MainAdapter.ItemClickLi
 
         binding.recyclerView.adapter = mainAdapter
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+
+        binding.errorScreen.refreshButton.setOnClickListener {
+            presenter.loadMovies()
+        }
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
